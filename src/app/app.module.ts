@@ -10,6 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {SightsListComponent} from './sights-list/sights-list.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SightDetailsModule} from './modules/sight-details/sight-details.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import {SightsListComponent} from './sights-list/sights-list.component';
     MapComponent,
     SightsComponent,
     NavComponent,
-    SightsListComponent
+    SightsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,9 +28,12 @@ import {SightsListComponent} from './sights-list/sights-list.component';
       accessToken: environment.mapboxToken
     }),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    SightDetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
