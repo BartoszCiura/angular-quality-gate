@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SightseeingPoint} from '../models/sightseeing-point';
 import {SightsService} from '../services/sights.service';
+import {SightseeingPoint} from '../models/sightseeing-point';
 
 @Component({
   selector: 'app-sights-list',
@@ -9,7 +9,7 @@ import {SightsService} from '../services/sights.service';
 })
 export class SightsListComponent implements OnInit {
 
-  sights: any[];
+  sights: SightseeingPoint[];
 
   constructor(private sightsService: SightsService) {
   }

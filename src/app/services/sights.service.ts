@@ -17,14 +17,14 @@ export class SightsService {
   }
 
   getSights(): Observable<SightseeingPoint[]> {
-     this.http.get<SightseeingPoint[]>(`${environment.apiUrl}/sights`).pipe(
+    return this.http.get<SightseeingPoint[]>(`${environment.apiUrl}/sights`).pipe(
       tap(console.log),
       map(result => result),
       map(sights => {
         return sights.map(sight => {
           const country = new Country();
           country.name = sight.country.name;
-          country.iata_code = sight.country.iata_code;
+          country.iataCode = sight.country.iataCode;
 
           return new SightseeingPoint(
             sight.name,
@@ -36,9 +36,6 @@ export class SightsService {
           );
         });
       }),
-      map(sights => {
-        return sights.filter(sight => sight.color);
-      })
     );
   }
 }
