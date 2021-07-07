@@ -29,7 +29,8 @@ export class SightsListComponent implements OnInit {
     modalRef.componentInstance.currentSight = currentSight;
   }
 
-  editObject(index: number): void {
-    this.router.navigateByUrl(`/edit/${index}`);
+  editObject(sight: SightseeingPoint): void {
+    console.log(sight);
+    this.router.navigateByUrl(`form/edit/${sight.id}`).then();
   }
 }

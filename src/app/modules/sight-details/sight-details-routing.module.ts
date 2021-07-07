@@ -4,15 +4,13 @@ import {NgModule} from '@angular/core';
 
 
 const routes: Routes = [
-
-  {
-    path: 'edit/:longitude', component: SightFormComponent
-  }
+  {path: 'edit/:id', component: SightFormComponent},
+  {path: 'add', component: SightFormComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class WikipediaRoutingModule {
+export class SightDetailsRoutingModule {
 }

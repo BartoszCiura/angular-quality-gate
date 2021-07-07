@@ -1,22 +1,22 @@
-<div class="form">
+<div class="form sight-form" >
   <form [formGroup]="addAndEdit" (ngSubmit)="saveOrEdit()">
     <ng-container>
       <div class="form-group">
-        <label for="lat">Coordinates lat</label>
-        <input type="text" id="lat"
-               formControlName="lat" class="form-control">
-        <div *ngIf="showError('lat', 'required')" class="alert alert-danger">Coordinates lat is required.</div>
-        <div *ngIf="showError('lat', 'pattern')" id="lat-error" class="alert alert-danger">Must be correct Coordinates
+        <label for="latitude">Coordinates lat</label>
+        <input type="text" id="latitude"
+               formControlName="latitude" class="form-control">
+        <div *ngIf="showError('latitude', 'required')" class="alert alert-danger">Coordinates lat is required.</div>
+        <div *ngIf="showError('latitude', 'pattern')" id="lat-error" class="alert alert-danger">Must be correct Coordinates
           lat
         </div>
       </div>
 
       <div class="form-group">
-        <label for="lng">Coordinates lng</label>
-        <input type="text" id="lng"
-               formControlName="lng" class="form-control">
-        <div *ngIf="showError('lng', 'required')" class="alert alert-danger">Coordinates lng is required.</div>
-        <div *ngIf="showError('lng', 'pattern')" id="lng-error" class="alert alert-danger">Must be correct Coordinates
+        <label for="longitude">Coordinates lng</label>
+        <input type="text" id="longitude"
+               formControlName="longitude" class="form-control">
+        <div *ngIf="showError('longitude', 'required')" class="alert alert-danger">Coordinates lng is required.</div>
+        <div *ngIf="showError('longitude', 'pattern')" id="lng-error" class="alert alert-danger">Must be correct Coordinates
           lng
         </div>
       </div>
@@ -32,16 +32,25 @@
         <textarea id="description"
                   formControlName="description" class="form-control"></textarea>
         <div *ngIf="showError('description', 'required')" class="alert alert-danger">Description is required.</div>
+        <div *ngIf="showError('description', 'maxlength')" class="alert alert-danger">Max 256 letters.</div>
       </div>
       <div class="form-group">
         <label for="color">Color</label>
-        <input type="text" id="color"
+        <input type="number" id="color"
                formControlName="color" class="form-control">
         <div *ngIf="showError('color', 'required')" class="alert alert-danger">Color is required.</div>
-        <div *ngIf="showError('color', 'pattern')" id="url-error" class="alert alert-danger">Must be correct URL</div>
+        <div *ngIf="showError('color', 'min')" id="min-color-error" class="alert alert-danger">Value must be between 1 and 3</div>
+        <div *ngIf="showError('color', 'max')" id="max-color-error" class="alert alert-danger">Value must be between 1 and 3</div>
       </div>
+      <label> Country:
+        <select formControlName="country" class="form-select" aria-label="Default select example">
+          <ng-container *ngFor=" let country of countries">
+            <option [value]="country.name">{{country.name}}</option>
+          </ng-container>
+        </select>
+        <div *ngIf="showError('country', 'required')" class="alert alert-danger">Select is required.</div>
+      </label>
       <button class="btn btn-success" id="submit-button" type='submit' [disabled]="!addAndEdit.valid">Submit</button>
     </ng-container>
   </form>
-<!--  <h4 *ngIf="submitted" id="submitted">Submitted!</h4>-->
 </div>

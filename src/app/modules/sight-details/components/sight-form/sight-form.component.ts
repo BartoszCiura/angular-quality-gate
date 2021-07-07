@@ -3,6 +3,7 @@ import {SightDetailService} from '../../services/sight-detail.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SightseeingPoint} from '../../../../models/sightseeing-point';
+import {Country} from '../../../../models/country';
 
 @Component({
   selector: 'app-sight-form',
@@ -16,15 +17,20 @@ export class SightFormComponent implements OnInit {
   id = '';
   DDLatRegex = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   DDLngRegex = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/;
+  countries = [
+    {name: 'Poland', iataCode: 'PL'},
+    {name: 'England', iataCode: 'EN'},
+    {name: 'Nederland', iataCode: 'NL'}];
 
   constructor(private sightDetails: SightDetailService, private router: Router,
               private route: ActivatedRoute) {
     this.addAndEdit = new FormGroup({
-      lat: new FormControl('', [Validators.required, Validators.pattern(this.DDLatRegex)]),
-      lng: new FormControl('', [Validators.required, Validators.pattern(this.DDLngRegex)]),
+      latitude: new FormControl('', [Validators.required, Validators.pattern(this.DDLatRegex)]),
+      longitude: new FormControl('', [Validators.required, Validators.pattern(this.DDLngRegex)]),
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      url: new FormControl('', Validators.required)
+      description: new FormControl('', [Validators.required, Validators.maxLength(256)]),
+      color: new FormControl('', [Validators.required, Validators.min(1), Validators.max(3)]),
+      country: new FormControl('', Validators.required)
     });
     this.route.params.subscribe(params => this.id = params.id);
   }
@@ -35,18 +41,19 @@ export class SightFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.id) {
-      this.sightDetails.getObject(this.id).subscribe((data) => {
-        this.sightObject = {
-          getColor(): string {
-            return '';
-          },
-          color: data.color,
-          latitude: data.latitude,
-          longitude: data.longitude,
-          name: data.name,
-          description: data.description,
-          country: data.country
-        };
+      this.sightDetails.getSightseeingPoint(this.id).subscribe((data) => {
+        this.sightObject = new SightseeingPoint(
+          data.name,
+          data.longitude,
+          data.latitude,
+          new Country(
+            data.country.name,
+            data.country.iataCode
+          ),
+          data.description,
+          data.color,
+          data.id
+        );
         this.addAndEdit.patchValue(this.sightObject);
       });
     }
@@ -54,15 +61,25 @@ export class SightFormComponent implements OnInit {
 
   saveOrEdit(): void {
     if (this.sightObject) {
-      this.sightDetails.editObject(this.id, this.addAndEdit.value)
+      console.log('tu');
+      this.sightDetails.editSightseeingPoint(this.id, this.addAndEdit.value)
         .subscribe(() => {
           this.router.navigateByUrl(`/`);
           alert('Object Edited!');
         });
       return;
     }
-    this.sightDetails.addObject(this.addAndEdit.value).subscribe(() => {
-      // this.submitted = true;
+    const country = this.countries.find((c: Country) => c.name === this.addAndEdit.value.country);
+    this.sightObject = new SightseeingPoint(
+      this.addAndEdit.value.name,
+      this.addAndEdit.value.longitude,
+      this.addAndEdit.value.latitude,
+      country,
+      this.addAndEdit.value.description,
+      this.addAndEdit.value.color,
+      this.addAndEdit.value.id
+    );
+    this.sightDetails.addSightseeingPointToJSON(this.sightObject).subscribe(() => {
       alert('Object Added!');
     });
   }

@@ -1,15 +1,13 @@
 {
   "sights": [
     {
-      "name": "Wawel",
-      "longitude": 19.9353576,
       "latitude": 50.0541492,
-      "country": {
-        "name": "POLAND",
-        "iata_code": "PL"
-      },
+      "longitude": 19.9353576,
+      "name": "Wawel",
       "description": "The Wawel Royal Castle and the Wawel Hill constitute the most historically and culturally important site in Poland. For centuries the residence of kings and the symbol of Polish statehood, the castle is now one of the country’s premier art museums.",
-      "color": 2
+      "color": 2,
+      "country": {},
+      "id": "1"
     },
     {
       "name": "Dragon",
@@ -20,7 +18,8 @@
         "iata_code": "PL"
       },
       "description": "Dragon of Wawel Hill, is a famous dragon in Polish folklore. His lair was in a cave at the foot of Wawel Hill on the bank of the Vistula River",
-      "color": 2
+      "color": 2,
+      "id": "2"
     },
     {
       "name": "Krakus Mound",
@@ -31,7 +30,44 @@
         "iata_code": "PL"
       },
       "description": "This large mound of unknown origin is a popular destination for scenic views of the city.",
-      "color": 1
+      "color": 1,
+      "id": "3"
+    },
+    {
+      "name": "Adam Mickiewicz",
+      "longitude": "19.937908",
+      "latitude": "50.061500",
+      "country": {
+        "name": "Poland",
+        "iataCode": "PL"
+      },
+      "description": "Adam Mickiewicz Monument in Kraków, (Polish: pomnik Adama Mickiewicza w Krakowie), is one of the best known bronze monuments in Poland, and a favourite meeting place at the Main Market Square in the Old Town (Stare Miasto) district of Kraków.",
+      "color": 1,
+      "id": "TwJ4nCG"
+    },
+    {
+      "name": "Adam Mickiewicz",
+      "longitude": "50.061500",
+      "latitude": "19.937908",
+      "country": {
+        "name": "England",
+        "iataCode": "EN"
+      },
+      "description": "Adam Mickiewicz",
+      "color": 2,
+      "id": "5QNx79_"
+    },
+    {
+      "name": "space",
+      "longitude": "19.935357",
+      "latitude": "50.054149",
+      "country": {
+        "name": "Poland",
+        "iataCode": "PL"
+      },
+      "description": "ggg",
+      "color": 2,
+      "id": "r4T8LKe"
     }
   ]
 }
