@@ -38,4 +38,8 @@ export class SightsService {
       }),
     );
   }
+
+  deleteSightseeingPoint(id: string): Observable<any>{
+    return this.http.delete(`${environment.apiUrl}/sights/${id}`);
+  }
 }

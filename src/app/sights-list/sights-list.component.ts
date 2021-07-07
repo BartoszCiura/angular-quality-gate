@@ -19,6 +19,10 @@ export class SightsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllSightseeingPoint();
+  }
+
+  getAllSightseeingPoint(): void {
     this.sightsService.getSights().subscribe(sights => {
       this.sights = sights;
     });
@@ -29,8 +33,12 @@ export class SightsListComponent implements OnInit {
     modalRef.componentInstance.currentSight = currentSight;
   }
 
-  editObject(sight: SightseeingPoint): void {
-    console.log(sight);
+  editSightseeingPoint(sight: SightseeingPoint): void {
     this.router.navigateByUrl(`form/edit/${sight.id}`).then();
+  }
+
+  deleteSightseeingPoint(sight: SightseeingPoint): void {
+    this.sightsService.deleteSightseeingPoint(sight.id).subscribe();
+    this.getAllSightseeingPoint();
   }
 }

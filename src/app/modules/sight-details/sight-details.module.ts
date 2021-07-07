@@ -12,4 +12,5 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
   ]
 })
-export class SightDetailsModule { }
+export class SightDetailsModule {
+}

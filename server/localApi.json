@@ -44,30 +44,6 @@
       "description": "Adam Mickiewicz Monument in Kraków, (Polish: pomnik Adama Mickiewicza w Krakowie), is one of the best known bronze monuments in Poland, and a favourite meeting place at the Main Market Square in the Old Town (Stare Miasto) district of Kraków.",
       "color": 1,
       "id": "TwJ4nCG"
-    },
-    {
-      "name": "Adam Mickiewicz",
-      "longitude": "50.061500",
-      "latitude": "19.937908",
-      "country": {
-        "name": "England",
-        "iataCode": "EN"
-      },
-      "description": "Adam Mickiewicz",
-      "color": 2,
-      "id": "5QNx79_"
-    },
-    {
-      "name": "space",
-      "longitude": "19.935357",
-      "latitude": "50.054149",
-      "country": {
-        "name": "Poland",
-        "iataCode": "PL"
-      },
-      "description": "ggg",
-      "color": 2,
-      "id": "r4T8LKe"
     }
   ]
 }

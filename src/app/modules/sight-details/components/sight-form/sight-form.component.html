@@ -1,4 +1,4 @@
-<div class="form sight-form" >
+<div class="form sight-form">
   <form [formGroup]="addAndEdit" (ngSubmit)="saveOrEdit()">
     <ng-container>
       <div class="form-group">
@@ -6,7 +6,8 @@
         <input type="text" id="latitude"
                formControlName="latitude" class="form-control">
         <div *ngIf="showError('latitude', 'required')" class="alert alert-danger">Coordinates lat is required.</div>
-        <div *ngIf="showError('latitude', 'pattern')" id="lat-error" class="alert alert-danger">Must be correct Coordinates
+        <div *ngIf="showError('latitude', 'pattern')" id="lat-error" class="alert alert-danger">Must be correct
+          Coordinates
           lat
         </div>
       </div>
@@ -16,7 +17,8 @@
         <input type="text" id="longitude"
                formControlName="longitude" class="form-control">
         <div *ngIf="showError('longitude', 'required')" class="alert alert-danger">Coordinates lng is required.</div>
-        <div *ngIf="showError('longitude', 'pattern')" id="lng-error" class="alert alert-danger">Must be correct Coordinates
+        <div *ngIf="showError('longitude', 'pattern')" id="lng-error" class="alert alert-danger">Must be correct
+          Coordinates
           lng
         </div>
       </div>
@@ -32,18 +34,24 @@
         <textarea id="description"
                   formControlName="description" class="form-control"></textarea>
         <div *ngIf="showError('description', 'required')" class="alert alert-danger">Description is required.</div>
-        <div *ngIf="showError('description', 'maxlength')" class="alert alert-danger">Max 256 letters.</div>
+        <div *ngIf="showError('description', 'maxlength')" id="description-error" class="alert alert-danger">Max 256
+          letters.
+        </div>
       </div>
       <div class="form-group">
         <label for="color">Color</label>
         <input type="number" id="color"
                formControlName="color" class="form-control">
         <div *ngIf="showError('color', 'required')" class="alert alert-danger">Color is required.</div>
-        <div *ngIf="showError('color', 'min')" id="min-color-error" class="alert alert-danger">Value must be between 1 and 3</div>
-        <div *ngIf="showError('color', 'max')" id="max-color-error" class="alert alert-danger">Value must be between 1 and 3</div>
+        <div *ngIf="showError('color', 'min')" id="min-color-error" class="alert alert-danger">Value must be between 1
+          and 3
+        </div>
+        <div *ngIf="showError('color', 'max')" id="max-color-error" class="alert alert-danger">Value must be between 1
+          and 3
+        </div>
       </div>
       <label> Country:
-        <select formControlName="country" class="form-select" aria-label="Default select example">
+        <select formControlName="country" class="form-select" id="country-select" aria-label="Default select example">
           <ng-container *ngFor=" let country of countries">
             <option [value]="country.name">{{country.name}}</option>
           </ng-container>
@@ -52,5 +60,6 @@
       </label>
       <button class="btn btn-success" id="submit-button" type='submit' [disabled]="!addAndEdit.valid">Submit</button>
     </ng-container>
+    <h4 *ngIf="submitted" id="submitted">Submitted!</h4>
   </form>
 </div>

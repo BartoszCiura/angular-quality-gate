@@ -15,12 +15,13 @@ export class SightFormComponent implements OnInit {
   addAndEdit: FormGroup;
   sightObject: SightseeingPoint;
   id = '';
-  DDLatRegex = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
-  DDLngRegex = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/;
+  DDLatRegex = /^(\+|-)?(?:90(?:(?:\.0{1,9})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,9})?))$/;
+  DDLngRegex = /^(\+|-)?(?:180(?:(?:\.0{1,9})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,9})?))$/;
   countries = [
     {name: 'Poland', iataCode: 'PL'},
     {name: 'England', iataCode: 'EN'},
     {name: 'Nederland', iataCode: 'NL'}];
+  submitted = false;
 
   constructor(private sightDetails: SightDetailService, private router: Router,
               private route: ActivatedRoute) {
@@ -61,9 +62,9 @@ export class SightFormComponent implements OnInit {
 
   saveOrEdit(): void {
     if (this.sightObject) {
-      console.log('tu');
       this.sightDetails.editSightseeingPoint(this.id, this.addAndEdit.value)
         .subscribe(() => {
+          this.submitted = true;
           this.router.navigateByUrl(`/`);
           alert('Object Edited!');
         });
@@ -81,6 +82,7 @@ export class SightFormComponent implements OnInit {
     );
     this.sightDetails.addSightseeingPointToJSON(this.sightObject).subscribe(() => {
       alert('Object Added!');
+      this.submitted = true;
     });
   }
 
